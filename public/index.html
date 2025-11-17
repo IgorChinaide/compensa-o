@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Minhas Tarefas</h1>
+
+    <a href="dados.html" class="btn-ver-dados">📊 Ver Dados Salvos</a>
+
+    <form id="form-tarefa">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" placeholder="Digite o título da tarefa" required>
+
+      <label for="data">Data:</label>
+      <input type="date" id="data" required>
+
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" required>
+        <option value="">Selecione o tipo</option>
+        <option value="prova">Prova</option>
+        <option value="trabalho">Trabalho</option>
+        <option value="estudo">Estudo</option>
+      </select>
+
+      <button type="submit">Adicionar</button>
+    </form>
+
+    <ul id="lista-tarefas"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

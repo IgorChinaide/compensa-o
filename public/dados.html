@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 Dados das Tarefas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Tarefas Salvas</h1>
+    <a href="index.html" class="btn-voltar">⬅ Voltar</a>
+
+    <table id="tabela-dados">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Tipo</th>
+          <th>Data</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" style="text-align:center;">Carregando...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:3000/tarefas";
+
+    async function carregarDados() {
+      try {
+        const resposta = await fetch(API_URL);
+        const tarefas = await resposta.json();
+
+        const tbody = document.querySelector("#tabela-dados tbody");
+        tbody.innerHTML = "";
+
+        if (tarefas.length === 0) {
+          tbody.innerHTML = `
+            <tr><td colspan="5" style="text-align:center;">Nenhuma tarefa cadastrada 😅</td></tr>
+          `;
+          return;
+        }
+
+        tarefas.forEach(t => {
+          const linha = document.createElement("tr");
+          linha.innerHTML = `
+            <td>${t.id}</td>
+            <td>${t.titulo}</td>
+            <td>${t.tipo || "—"}</td>
+            <td>${t.data || "—"}</td>
+            <td>${t.status || "Pendente"}</td>
+          `;
+          tbody.appendChild(linha);
+        });
+      } catch (erro) {
+        console.error("Erro ao carregar dados:", erro);
+        const tbody = document.querySelector("#tabela-dados tbody");
+        tbody.innerHTML = `
+          <tr><td colspan="5" style="text-align:center;color:red;">Erro ao carregar os dados ❌</td></tr>
+        `;
+      }
+    }
+
+    window.onload = carregarDados;
+  </script>
+</body>
+</html>
