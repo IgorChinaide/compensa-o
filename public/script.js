@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:3000/tarefas";
 
-// Carregar lista de tarefas
+
 async function carregarTarefas() {
   try {
     const resposta = await fetch(API_URL);
@@ -29,7 +29,7 @@ async function carregarTarefas() {
   }
 }
 
-// Adicionar nova tarefa
+
 document.getElementById("form-tarefa").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -64,7 +64,7 @@ document.getElementById("form-tarefa").addEventListener("submit", async (e) => {
   }
 });
 
-// Alterar status (Concluir / Reabrir)
+
 async function alterarStatus(id, statusAtual) {
   const novoStatus = statusAtual === "Concluído" ? "Pendente" : "Concluído";
 
@@ -81,7 +81,7 @@ async function alterarStatus(id, statusAtual) {
   }
 }
 
-// Excluir tarefa
+
 async function excluirTarefa(id) {
   if (!confirm("Tem certeza que deseja excluir esta tarefa?")) return;
 
@@ -95,5 +95,5 @@ async function excluirTarefa(id) {
   }
 }
 
-// Iniciar carregamento
+
 window.onload = carregarTarefas;
